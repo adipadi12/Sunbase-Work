@@ -26,4 +26,48 @@ public class APILink : MonoBehaviour
             }
         }
     }
+    
+
+    APILink apiLink;
+
+    void Start()
+    {
+        apiLink = GetComponent<APILink>();
+        StartCoroutine(apiLink.GetDataFromClient(HandleAPIData));
+    }
+
+    [System.Serializable]
+    public class ClientData
+    {
+        public int id;
+        public string label;
+        public bool isManager;
+    }
+
+    [System.Serializable]
+    public class ClientDataWrapper
+    {
+        public List<ClientData> clients;
+        public Dictionary<string, ClientDetails> data;
+    }
+
+    [System.Serializable]
+    public class ClientDetails
+    {
+        public string name;
+        public int points;
+        public string address;
+    }
+       public void HandleAPIData(string jsonData)
+    {
+        ClientDataWrapper clientDataWrapper = JsonUtility.FromJson<ClientDataWrapper>(jsonData);
+
+        foreach (ClientData clientData in clientDataWrapper.clients)
+        {
+            // Update UI elements with client data
+            // nameLabel.text = clientData.label;
+            // pointsLabel.text = clientDataWrapper.data[clientData.id.ToString()].points.ToString();
+            // addressLabel.text = clientDataWrapper.data[clientData.id.ToString()].address;
+        }
+    }
 }

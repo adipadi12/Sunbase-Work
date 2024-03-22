@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/CircleSpawner.unity
+- path: Assets/Scenes/DoTween.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
